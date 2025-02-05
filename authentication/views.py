@@ -21,17 +21,17 @@ def Registration(request):
 
 def LoginView(request):
     if request.method == 'POST':
-        form = AuthenticationForm(request.POST)
+        form = AuthenticationForm(data = request.POST)
         if form.is_valid():
-            user = form.get_user
+            user = form.get_user()
             login(request, user)
             return redirect('home')
         else:
-            return redirect('login')
+            form = AuthenticationForm()
     else:
         form = AuthenticationForm()
     context = {
-        'form':form
+        'form':form,
     }
     return render(request, 'login.html', context)
 

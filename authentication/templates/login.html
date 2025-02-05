@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{% endblock title %}
+{% block content %}
+<div class="container mx-auto">
+    <form action="" method = 'POST'>
+        {% csrf_token %}
+        {% for form in form %}
+        <div>
+            {{form.label_tag}}
+            {{form}}
+        </div>
+        {% if form.errors %}
+        <p class="text-red-600">{{form.errors}}</p>
+        {% endif %}
+        {% endfor %}
+        <button type="submit" class="bg-blue-600 text-white p-2 rounded-md">Login</button>
+    </form>
+</div>
+{% endblock content %}
