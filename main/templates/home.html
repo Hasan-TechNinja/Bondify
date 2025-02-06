@@ -7,7 +7,7 @@
     <div class="w-2/4 p-3">
         <div>
             {% for post in post %}
-            <div class='bg-white p-3 rounded my-4'>
+            <div class='bg-gray-50 p-3 rounded my-4'>
                 <div class="flex space-x-3">
                     <div><img src="{% static "logo.jpeg" %}" class="size-10 rounded-full ring" alt="P"></div>
                     <div>
@@ -16,8 +16,10 @@
                     </div>
                 </div>
                 <hr class="border-x-black my-1">
-                <img src="{{ post.image }}" alt="">
-                <p>{{ post.create_post }}</p>
+                <p class="my-2">{{ post.create_post }}</p>
+                {% if post.image %}
+                <img class="size-2/3" src="{{ post.image.url }}" alt="">
+                {% endif %}
             </div>
             {% endfor %}
         </div>
