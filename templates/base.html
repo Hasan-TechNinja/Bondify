@@ -13,7 +13,7 @@
     <nav class="container mx-auto py-3 flex justify-between rounded-full h-fixed">
         <ul class="flex justify-between ml-2 items-center">
             <li><img src="{% static "logo.jpeg" %}" class="size-10 rounded-full ring" alt=""></li>
-            <li><a href="#" class="ml-1 text-sm ">Bondify</a></li>
+            <li><a href="{% url "home" %}" class="ml-1 text-sm ">Bondify</a></li>
         </ul>
         <ul class="flex justify-between items-center space-x-5 text-xl">
             {% if user.is_authenticated %}

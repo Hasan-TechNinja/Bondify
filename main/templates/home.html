@@ -1,29 +1,48 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}{% endblock title %}
+{% block title %}Home{% endblock title %}
+
 {% block content %}
-<div class="container mx-auto flex justify-between mt-6">
-    <div>1</div>
-    <div class="w-2/4 p-3">
+<div class="container mx-auto flex mt-6 space-x-6">
+    <!-- Left Sidebar (Fixed) -->
+    <div class="w-1/4 h-screen hidden lg:block sticky top-0">
+        <div class="bg-white p-4 rounded-lg shadow-md h-full">
+            <p class="text-gray-500 font-semibold">Left Sidebar</p>
+        </div>
+    </div>
+
+    <!-- Middle Content (Scrollable) -->
+    <div class="w-full lg:w-2/4 h-screen overflow-auto">
         <div>
             {% for post in post %}
-            <div class='bg-gray-50 p-3 rounded my-4'>
-                <div class="flex space-x-3">
-                    <div><img src="{% static "logo.jpeg" %}" class="size-10 rounded-full ring" alt="P"></div>
+            <div class="bg-white p-4 rounded-lg shadow-md my-4">
+                <!-- Profile & Time -->
+                <div class="flex items-center space-x-3">
+                    <img src="{% static 'logo.jpeg' %}" class="w-10 h-10 rounded-full ring" alt="Profile">
                     <div>
-                        <p>{{ post.user }}</p>
-                        <p>{{ post.created }}</p>
+                        <p class="font-semibold text-gray-800">{{ post.user }}</p>
+                        <p class="text-sm text-gray-500">{{ post.created }}</p>
                     </div>
                 </div>
-                <hr class="border-x-black my-1">
-                <p class="my-2">{{ post.create_post }}</p>
+                <hr class="my-2 border-gray-300">
+
+                <!-- Post Content -->
+                <p class="text-gray-700 my-2">{{ post.create_post }}</p>
+
+                <!-- Post Image (If available) -->
                 {% if post.image %}
-                <img class="size-2/3" src="{{ post.image.url }}" alt="">
+                <img class="w-full rounded-lg mt-2" src="{{ post.image.url }}" alt="Post Image">
                 {% endif %}
             </div>
             {% endfor %}
         </div>
     </div>
-    <div>1</div>
+
+    <!-- Right Sidebar (Fixed) -->
+    <div class="w-1/4 h-screen hidden lg:block sticky top-0">
+        <div class="bg-white p-4 rounded-lg shadow-md h-full">
+            <p class="text-gray-500 font-semibold">Right Sidebar</p>
+        </div>
+    </div>
 </div>
 {% endblock content %}
