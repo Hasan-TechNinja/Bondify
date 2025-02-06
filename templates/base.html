@@ -9,24 +9,27 @@
     {% tailwind_css %}
     <title>{% block title %}{% endblock title %}</title>
 </head>
-<body>
+<body class="bg-gray-200">
     <nav class="container mx-auto py-3 flex justify-between rounded-full h-fixed">
         <ul class="flex justify-between ml-2 items-center">
             <li><img src="{% static "logo.jpeg" %}" class="size-10 rounded-full ring" alt=""></li>
-            <li><a href="#" class="ml-1 text-sm text-cyan-800">Bondify</a></li>
+            <li><a href="#" class="ml-1 text-sm ">Bondify</a></li>
         </ul>
         <ul class="flex justify-between items-center space-x-5 text-xl">
-            <li><a class="bg-gray-200 text-black rounded-md p-1" href="{% url "create" %}"><i class="fa-solid fa-plus"></i></a></li>
-            <li><a class="bg-gray-200 text-black rounded-md p-1" href="{% url "home" %}"><i class="fa-solid fa-house"></i></a></li>
-            <li><a class="bg-gray-200 text-black rounded-md p-1" href="#"><i class="fa-solid fa-video"></i></a></li>
-            <li><a class="bg-gray-200 text-black rounded-md p-1" href="#"><i class="fa-solid fa-message"></i></a></li>
+            {% if user.is_authenticated %}
+            <li><a class="bg-white text-black rounded-md p-1" href="{% url "create" %}"><i class="fa-solid fa-plus"></i></a></li>
+            <li><a class="bg-white text-black rounded-md p-1" href="{% url "home" %}"><i class="fa-solid fa-house"></i></a></li>
+            <li><a class="bg-white text-black rounded-md p-1" href="#"><i class="fa-solid fa-video"></i></a></li>
+            {% else %}
+            <li><a class="bg-white text-black rounded-md p-1" href="#"><i class="fa-solid fa-message"></i></a></li>
+            {% endif %}
         </ul>
-        <ul class="flex justify-between items-center mr-2 space-x-2 text-xl">
+        <ul class="flex justify-between items-center mr-2 space-x-4 text-xl">
             {% if user.is_authenticated %}
             <li><a href="{% url "logout" %}"><i class="fa-solid fa-right-from-bracket bg-red-200 p-1"></i></a></li>
             {% else %}
-            <li><a href="{% url "login" %}"><i class="fa-solid fa-right-to-bracket"></i></a></li>
-            <li><a href="{% url "registration" %}"><i class="fa-solid fa-address-card"></i></a></li>
+            <li><a href="{% url "login" %}"><i class="fa-solid fa-right-to-bracket bg-blue-300 p-2 rounded-md text-white"></i></a></li>
+            <li><a href="{% url "registration" %}"><i class="fa-solid fa-address-card bg-green-300 p-2 rounded-md text-white"></i></a></li>
             {% endif %}
         </ul>
     </nav>
