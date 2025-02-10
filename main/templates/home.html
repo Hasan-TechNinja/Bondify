@@ -20,7 +20,10 @@
                 <div class="flex items-center space-x-3">
                     <img src="{% static 'logo.jpeg' %}" class="w-10 h-10 rounded-full ring" alt="Profile">
                     <div>
-                        <p class="font-semibold text-gray-800">{{ post.user }}</p>
+                        <div class="flex space-x-2 items-center">
+                            <p class="font-semibold text-gray-800">{{ post.user }}</p>
+                            <p class="font-semibold text-gray-800 text-lg"><a href="{% url "update" post.id %}">*</a></p>
+                        </div>
                         <p class="text-sm text-gray-500">{{ post.created }}</p>
                     </div>
                 </div>

@@ -30,3 +30,21 @@ def Create(request):
     }
             
     return render(request, 'create.html', context)
+
+
+
+def Update(request, pk):
+    data = Post.objects.get(id=pk)
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=data)
+        if form.is_valid():
+            form.updated = date.today
+            form.save()            
+            return redirect('home')
+    else:
+        form = PostForm(instance=data)
+
+    context = {
+        'form':form
+    }
+    return render(request, 'update.html', context)
